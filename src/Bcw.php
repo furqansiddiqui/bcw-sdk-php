@@ -26,7 +26,7 @@ class Bcw
      */
     public static function isValidWalletId(mixed $input): bool
     {
-        return is_string($input) && preg_match('/^[a-f0-9]{6}-[a-f0-9]{10}-[a-f0-9]{6}$/i', $input);
+        return is_string($input) && strlen($input) === 24 && preg_match('/^[a-f0-9]{6}-[a-f0-9]{10}-[a-f0-9]{6}$/i', $input);
     }
 
     /**
@@ -35,6 +35,6 @@ class Bcw
      */
     public static function isValidApiToken(mixed $input): bool
     {
-        return is_string($input) && preg_match("/^[a-f0-9]{40}$/i", $input);
+        return is_string($input) && strlen($input) === 40 && preg_match("/^[a-f0-9]{40}$/i", $input);
     }
 }

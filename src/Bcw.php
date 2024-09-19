@@ -37,4 +37,13 @@ class Bcw
     {
         return is_string($input) && strlen($input) === 40 && preg_match("/^[a-f0-9]{40}$/i", $input);
     }
+
+    /**
+     * @param mixed $input
+     * @return bool
+     */
+    public static function isValidAccountTag(mixed $input): bool
+    {
+        return !is_string($input) || !$input || strlen($input) > 16 || !preg_match('/^[\w\-@:]{1,16}$/i', $input);
+    }
 }

@@ -18,6 +18,7 @@ use Charcoal\HTTP\Client\Request;
 use Charcoal\HTTP\Client\Response;
 use Charcoal\HTTP\Commons\HttpMethod;
 use FurqanSiddiqui\BCW\EVM\V1\Response\AddressInfo;
+use FurqanSiddiqui\BCW\EVM\V1\Response\NewAccount;
 use FurqanSiddiqui\BCW\EVM\V1\Response\WalletInfo;
 use FurqanSiddiqui\BCW\Exception\BcwApiException;
 use FurqanSiddiqui\BCW\Models\WalletConfig;
@@ -72,6 +73,21 @@ class EvmClient
             "address" => $address,
             "timestamp" => time()
         ], ["address", "timestamp"], true));
+    }
+
+    /**
+     * @param string $tag
+     * @return NewAccount
+     * @throws BcwApiException
+     * @throws \Charcoal\HTTP\Client\Exception\RequestException
+     * @throws \Charcoal\HTTP\Client\Exception\ResponseException
+     */
+    public function createAccount(string $tag): NewAccount
+    {
+        return new NewAccount($this->apiCall(HttpMethod::POST, "/create_account", [
+            "tag" => $tag,
+            "timestamp" => time()
+        ], ["tag", "timestamp"], true));
     }
 
     /**

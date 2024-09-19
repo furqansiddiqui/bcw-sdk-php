@@ -17,6 +17,7 @@ namespace FurqanSiddiqui\BCW\EVM\V1;
 use Charcoal\HTTP\Client\Request;
 use Charcoal\HTTP\Client\Response;
 use Charcoal\HTTP\Commons\HttpMethod;
+use FurqanSiddiqui\BCW\EVM\V1\Response\AddressInfo;
 use FurqanSiddiqui\BCW\EVM\V1\Response\WalletInfo;
 use FurqanSiddiqui\BCW\Exception\BcwApiException;
 use FurqanSiddiqui\BCW\Models\WalletConfig;
@@ -56,6 +57,21 @@ class EvmClient
     public function info(): WalletInfo
     {
         return new WalletInfo($this->apiCall(HttpMethod::GET, "/info", [], [], true));
+    }
+
+    /**
+     * @param string $address
+     * @return AddressInfo
+     * @throws BcwApiException
+     * @throws \Charcoal\HTTP\Client\Exception\RequestException
+     * @throws \Charcoal\HTTP\Client\Exception\ResponseException
+     */
+    public function accountInfo(string $address): AddressInfo
+    {
+        return new AddressInfo($this->apiCall(HttpMethod::GET, "/account", [
+            "address" => $address,
+            "timestamp" => time()
+        ], ["address", "timestamp"], true));
     }
 
     /**

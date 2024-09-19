@@ -1,0 +1,29 @@
+{
+  "name": "furqansiddiqui/bcw-sdk-php",
+  "description": "BCW SDK PHP",
+  "type": "library",
+  "homepage": "https://github.com/furqansiddiqui/bcw-sdk-php",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Furqan A. Siddiqui",
+      "email": "hello@furqansiddiqui.com",
+      "homepage": "https://www.furqansiddiqui.com",
+      "role": "Author"
+    }
+  ],
+  "require": {
+    "php-64bit": "^8.2",
+    "ext-gmp": "*",
+    "ext-curl": "*",
+    "charcoal-dev/http-client": "^0.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "FurqanSiddiqui\\BCW\\": [
+        "src"
+      ]
+    }
+  },
+  "minimum-stability": "dev"
+}

@@ -23,6 +23,7 @@ use Charcoal\HTTP\Client\Response;
 readonly class AddressInfo
 {
     public string $address;
+    public bool $tracking;
     public bool $isOwned;
     public bool $privateKey;
     public ?string $tag;
@@ -34,6 +35,7 @@ readonly class AddressInfo
     public function __construct(Response $response)
     {
         $this->address = $response->payload->getUnsafe("address");
+        $this->tracking = $response->payload->getUnsafe("tracking");
         $this->isOwned = $response->payload->getUnsafe("isOwned");
         $this->privateKey = $response->payload->getUnsafe("privateKey");
         $this->tag = $response->payload->getUnsafe("tag") ?? null;

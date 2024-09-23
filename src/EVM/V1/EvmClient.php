@@ -18,6 +18,7 @@ use Charcoal\HTTP\Client\Request;
 use Charcoal\HTTP\Client\Response;
 use Charcoal\HTTP\Commons\HttpMethod;
 use FurqanSiddiqui\BCW\EVM\V1\Response\AddressInfo;
+use FurqanSiddiqui\BCW\EVM\V1\Response\Erc20Token;
 use FurqanSiddiqui\BCW\EVM\V1\Response\NewAccount;
 use FurqanSiddiqui\BCW\EVM\V1\Response\WalletInfo;
 use FurqanSiddiqui\BCW\Exception\BcwApiException;
@@ -88,6 +89,22 @@ class EvmClient
             "tag" => $tag,
             "timestamp" => time()
         ], ["tag", "timestamp"], true));
+    }
+
+    /**
+     * @param string $contractAddress
+     * @return Erc20Token
+     * @throws BcwApiException
+     * @throws \Charcoal\HTTP\Client\Exception\RequestException
+     * @throws \Charcoal\HTTP\Client\Exception\ResponseException
+     */
+    public function tokenContractErc20(string $contractAddress): Erc20Token
+    {
+        return new Erc20Token($this->apiCall(HttpMethod::GET, "/token_contract", [
+            "chainId" => $this->wallet->chainId,
+            "token" => "erc20",
+            "address" => $contractAddress
+        ], [], true));
     }
 
     /**

@@ -21,11 +21,13 @@ namespace FurqanSiddiqui\BCW\Models;
 readonly class WalletConfig
 {
     /**
+     * @param int $chainId
      * @param string $walletId
      * @param string $apiKey
      * @param string $hmacSecret
      */
     public function __construct(
+        public int    $chainId,
         public string $walletId,
         public string $apiKey,
         public string $hmacSecret,

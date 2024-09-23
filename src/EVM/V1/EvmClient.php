@@ -92,16 +92,17 @@ class EvmClient
     }
 
     /**
+     * @param int $chainId
      * @param string $contractAddress
      * @return Erc20Token
      * @throws BcwApiException
      * @throws \Charcoal\HTTP\Client\Exception\RequestException
      * @throws \Charcoal\HTTP\Client\Exception\ResponseException
      */
-    public function tokenContractErc20(string $contractAddress): Erc20Token
+    public function tokenContractErc20(int $chainId, string $contractAddress): Erc20Token
     {
         return new Erc20Token($this->apiCall(HttpMethod::GET, "/token_contract", [
-            "chainId" => $this->wallet->chainId,
+            "chainId" => $chainId,
             "token" => "erc20",
             "address" => $contractAddress
         ], [], true));

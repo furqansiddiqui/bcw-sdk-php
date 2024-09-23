@@ -32,7 +32,7 @@ readonly class WalletInfo
     public function __construct(Response $response)
     {
         $this->wallet = $response->payload->getASCII("wallet");
-        $this->type = $response->payload->getASCII("wallet");
-        $this->name = $response->payload->getASCII("wallet");
+        $this->type = $response->payload->getASCII("type");
+        $this->name = $response->payload->getASCII("name");
     }
 }

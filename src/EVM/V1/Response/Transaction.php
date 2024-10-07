@@ -47,20 +47,19 @@ readonly class Transaction
      */
     public function __construct(array $txObject)
     {
-        if (!isset($txObject["hash"], $txObject["status"], $txObject["confirmations"], $txObject["blockNumber"],
-            $txObject["blockHash"], $txObject["blockTxnIndex"], $txObject["from"], $txObject["to"], $txObject["value"],
+        if (!isset($txObject["hash"], $txObject["status"], $txObject["from"], $txObject["value"],
             $txObject["valueWei"], $txObject["gasLimit"], $txObject["nonce"], $txObject["transfers"])) {
             throw new BcwApiException("Incomplete Transaction object");
         }
 
         $this->hash = $txObject["hash"];
         $this->status = $txObject["status"];
-        $this->confirmations = $txObject["confirmations"];
-        $this->blockNumber = $txObject["blockNumber"];
-        $this->blockHash = $txObject["blockHash"];
-        $this->blockTxnIndex = $txObject["blockTxnIndex"];
+        $this->confirmations = $txObject["confirmations"] ?? null;
+        $this->blockNumber = $txObject["blockNumber"] ?? null;
+        $this->blockHash = $txObject["blockHash"] ?? null;
+        $this->blockTxnIndex = $txObject["blockTxnIndex"] ?? null;
         $this->from = $txObject["from"];
-        $this->to = $txObject["to"];
+        $this->to = $txObject["to"] ?? null;
         $this->value = $txObject["value"];
         $this->valueWei = $txObject["valueWei"];
 
@@ -86,8 +85,9 @@ readonly class Transaction
             }
 
             $this->transfers = $tokenTransfers;
-            $this->errors = count($errors) > 0 ? $errors : null;
         }
+
+        $this->errors = count($errors) > 0 ? $errors : null;
     }
 }
 

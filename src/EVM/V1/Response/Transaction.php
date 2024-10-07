@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace FurqanSiddiqui\BCW\EVM\V1\Response;
 
-use Charcoal\HTTP\Client\Response;
 use FurqanSiddiqui\BCW\Exception\BcwApiException;
 
 /**

@@ -36,8 +36,8 @@ readonly class Transaction
     public array $transfers;
 
     public int $gasLimit;
-    public string $gasPrice;
-    public string $gasPriceWei;
+    public ?string $gasPrice;
+    public ?string $gasPriceWei;
     public int $nonce;
     public ?array $errors;
 
@@ -49,8 +49,7 @@ readonly class Transaction
     {
         if (!isset($txObject["hash"], $txObject["status"], $txObject["confirmations"], $txObject["blockNumber"],
             $txObject["blockHash"], $txObject["blockTxnIndex"], $txObject["from"], $txObject["to"], $txObject["value"],
-            $txObject["valueWei"], $txObject["gasLimit"], $txObject["gasPrice"], $txObject["gasPriceWei"],
-            $txObject["nonce"], $txObject["transfers"])) {
+            $txObject["valueWei"], $txObject["gasLimit"], $txObject["nonce"], $txObject["transfers"])) {
             throw new BcwApiException("Incomplete Transaction object");
         }
 
@@ -66,8 +65,8 @@ readonly class Transaction
         $this->valueWei = $txObject["valueWei"];
 
         $this->gasLimit = $txObject["gasLimit"];
-        $this->gasPrice = $txObject["gasPrice"];
-        $this->gasPriceWei = $txObject["gasPriceWei"];
+        $this->gasPrice = $txObject["gasPrice"] ?? null;
+        $this->gasPriceWei = $txObject["gasPriceWei" ?? null];
         $this->nonce = $txObject["nonce"];
 
         $errors = [];
